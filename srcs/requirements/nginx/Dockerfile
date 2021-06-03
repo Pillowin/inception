@@ -28,6 +28,6 @@ RUN echo "<!DOCTYPE html>\
 </body>\
 </html>" > /var/www/index.html
 
-EXPOSE 443
-
 CMD ["nginx", "-g", "daemon off;"]
+
+EXPOSE 443
