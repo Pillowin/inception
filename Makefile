@@ -10,7 +10,6 @@ clean:
 
 fclean:	clean
 
-re:
-	docker-compose --project-directory srcs -f srcs/docker-compose.yml up -d --force-recreate
+re:	clean all
 
 .PHONY:	all clean fclean re

@@ -1,6 +1,17 @@
 version: '3.3'
+
 services:
+
     nginx:
+        container_name: nginx
         build: ./requirements/nginx
+        restart: always
         ports:
             - "443:443"
+
+    mariadb:
+        container_name: mariadb
+        build: ./requirements/mariadb
+        restart: always
+        ports:
+            - "3306:3306"

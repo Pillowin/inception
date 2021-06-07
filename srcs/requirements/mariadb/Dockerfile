@@ -1,9 +1,6 @@
 FROM alpine:3.12.7
 LABEL maintener="agautier <agautier@student.42.fr>"
 
-#COPY ./srcs /srcs
-#COPY srcs/my.cnf /etc/my.cnf
-
 RUN apk update && \
 	apk add mysql mysql-client
 
@@ -21,4 +18,4 @@ RUN echo "[mysqld]\
 
 EXPOSE 3306
 
-#CMD ["mysqld", "-umysql"]
+CMD ["mysqld", "-umysql"]
