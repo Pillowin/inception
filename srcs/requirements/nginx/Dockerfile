@@ -1,4 +1,4 @@
-FROM alpine:3.13.5
+FROM alpine:3.12.7
 LABEL maintener="agautier <agautier@student.42.fr>"
 
 COPY ./conf /conf
