@@ -5,8 +5,7 @@ LABEL maintener="agautier <agautier@student.42.fr>"
 #COPY srcs/my.cnf /etc/my.cnf
 
 RUN apk update && \
-	apk add mariadb mariadb-client
-	#apk add mysql mysql-client
+	apk add mysql mysql-client
 
 RUN mkdir /run/mysqld && \
 	sed -i "7i user=root\ndatadir=/var/lib/mysql/" /etc/my.cnf && \
