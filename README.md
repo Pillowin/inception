@@ -1,7 +1,7 @@
 # inception
 This document is a System Administration related exercise.
 
-##TODO
+## TODO
 - mariadb remove duplicate cnf
 - mariadb finish config
 
