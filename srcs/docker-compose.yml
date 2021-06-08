@@ -8,10 +8,21 @@ services:
         restart: always
         ports:
             - "443:443"
+        links:
+            - wordpress
+        volumes:
+            - ./tools/code:/code
 
-    mariadb:
-        container_name: mariadb
-        build: ./requirements/mariadb
+    wordpress:
+        container_name: wordpress
+        build: ./requirements/wordpress
         restart: always
-        ports:
-            - "3306:3306"
+        volumes:
+            - ./tools/code:/code
+
+#    mariadb:
+#        container_name: mariadb
+#        build: ./requirements/mariadb
+#        restart: always
+#        ports:
+#            - "3306:3306"
