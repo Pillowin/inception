@@ -7,7 +7,3 @@ This document is a System Administration related exercise.
 
 - php install missing extensions
 - php link wordpress
-
-- nginx add proxy php
-
-- network create
