@@ -6,12 +6,6 @@ RUN apk update && \
 
 RUN	sed -i 's/listen = 127\.0\.0\.1:9000/listen = 0\.0\.0\.0:9000/g' /etc/php7/php-fpm.d/www.conf
 
-#RUN	echo '[global]' > /etc/php7/php-fpm.d/docker.conf; \
-#	echo 'daemonize = no' >> /etc/php7/php-fpm.d/docker.conf; \
-#	echo >> /etc/php7/php-fpm.d/docker.conf; \
-#	echo '[www]' >> /etc/php7/php-fpm.d/docker.conf; \
-#	echo 'listen = 9000' >> /etc/php7/php-fpm.d/docker.conf
-
 #RUN mkdir /usr/share/webapps && \
 #	cd /usr/share/webapps/ && \
 #	wget http://wordpress.org/latest.tar.gz && \
@@ -21,3 +15,5 @@ RUN	sed -i 's/listen = 127\.0\.0\.1:9000/listen = 0\.0\.0\.0:9000/g' /etc/php7/p
 #	cd /
 
 CMD ["php-fpm7", "-FR"]
+
+EXPOSE 9000
