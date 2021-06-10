@@ -6,11 +6,10 @@ RUN apk update --no-cache && \
 	apk add nginx
 
 COPY ./conf/ /conf/
-COPY /conf/nginx.conf /etc/nginx/
-#RUN mv /conf/nginx.conf /etc/nginx/nginx.conf
 
 RUN adduser -D -g 'www' www && \
-	mkdir /run/nginx
+	mkdir /run/nginx && \
+	mv /conf/nginx.conf /etc/nginx/nginx.conf
 
 CMD ["nginx", "-g", "daemon off;"]
 

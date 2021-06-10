@@ -1,7 +1,7 @@
 FROM alpine:3.12.7
 LABEL maintener="agautier <agautier@student.42.fr>"
 
-RUN apk update && \
+RUN apk update --no-cache && \
 	apk add mysql mysql-client
 
 RUN sed -i "7i user=mysql\ndatadir=/var/lib/mysql/" /etc/my.cnf.d/mariadb-server.cnf && \

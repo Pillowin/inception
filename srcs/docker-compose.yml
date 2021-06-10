@@ -21,7 +21,6 @@ services:
             - network
         volumes:
             - ./tools/code:/code
-              #            - ./requirements/nginx/tools
 
     mariadb:
         container_name: mariadb
