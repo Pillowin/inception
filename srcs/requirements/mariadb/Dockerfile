@@ -18,4 +18,4 @@ RUN echo "[mysqld]\
 
 EXPOSE 3306
 
-CMD ["mysqld", "-umysql"]
+#CMD ["mysqld", "-umysql"]

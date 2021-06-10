@@ -22,12 +22,12 @@ services:
         volumes:
             - ./tools/code:/code
 
-    mariadb:
-        container_name: mariadb
-        build: ./requirements/mariadb
-        restart: always
-        ports:
-            - "3306:3306"
+              #    mariadb:
+              #        container_name: mariadb
+              #        build: ./requirements/mariadb
+              #        restart: always
+              #        ports:
+              #            - "3306:3306"
 
 networks:
     network:
