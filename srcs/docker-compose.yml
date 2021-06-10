@@ -13,14 +13,15 @@ services:
         container_name: nginx
         build: ./requirements/nginx
         restart: always
-        networks:
-            - network
-        ports:
-            - "443:443"
-        volumes:
-            - ./tools/code:/code
         depends_on:
             - wordpress
+        ports:
+            - "443:443"
+        networks:
+            - network
+        volumes:
+            - ./tools/code:/code
+              #            - ./requirements/nginx/tools
 
     mariadb:
         container_name: mariadb
