@@ -16,13 +16,12 @@ RUN echo "[mysqld]" > /etc/my.cnf.d/mariadb-server.cnf && \
 	echo "bind-address = 0.0.0.0" >> /etc/my.cnf.d/mariadb-server.cnf && \
 	echo "skip-networking = false" >> /etc/my.cnf.d/mariadb-server.cnf
 
-RUN sh -c "mysqld &" && \
-	sleep 5 && \
-	echo "\
-		CREATE DATABASE wordpress;\
-		GRANT ALL PRIVILEGES ON wordpress.* TO 'mysql';\
-		FLUSH PRIVILEGES;\
-	" | mysql
+RUN sh -c "mysqld &" &&\
+    sleep 5 && \
+	echo "CREATE DATABASE wordpress" | mysql &&\
+	echo "CREATE USER 'username'@'%' IDENTIFIED BY 'password';" | mysql &&\
+	echo "GRANT ALL PRIVILEGES ON wordpress.* TO 'username'@'%';" | mysql &&\
+	echo "FLUSH PRIVILEGES;" | mysql
 
 EXPOSE 3306
 
