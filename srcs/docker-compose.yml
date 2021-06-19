@@ -8,28 +8,32 @@ services:
         networks:
             - network
         volumes:
-            - ./tools/code:/code
-    nginx:
-        container_name: nginx
-        build: ./requirements/nginx
-        restart: always
-        depends_on:
-            - wordpress
-        ports:
-            - "443:443"
-        networks:
-            - network
-        volumes:
-            - ./tools/code:/code
-
+            - type: volume
+              source: website
+              target: /code
     mariadb:
         container_name: mariadb
         build: ./requirements/mariadb
         restart: always
         ports:
           - "3306:3306"
-#        environment:
-#            - db_user=${MYSQL_USER}
-
+    nginx:
+        container_name: nginx
+        build: ./requirements/nginx
+        restart: always
+        depends_on:
+            - wordpress
+            - mariadb
+        ports:
+            - "443:443"
+        networks:
+            - network
+        volumes:
+            - type: volume
+              source: website
+              target: /code
+volumes:
+    website:
+        external: true
 networks:
     network:
