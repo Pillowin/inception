@@ -4,6 +4,7 @@ This document is a System Administration related exercise.
 ## TODO
 - mariadb remove duplicate cnf
 - mariadb finish config
+- remove mysql-client
 
 - php install missing extensions
 - php link wordpress
