@@ -1,7 +1,10 @@
 FROM alpine:3.12.7
 LABEL maintener="agautier <agautier@student.42.fr>"
 
-ARG db_user
+ARG DB_CLIENT
+ARG DB_NAME
+ARG DB_USER
+ARG DB_PASSWORD
 
 RUN apk update --no-cache && \
 	apk add mysql mysql-client
@@ -20,9 +23,9 @@ RUN echo "[mysqld]" > /etc/my.cnf.d/mariadb-server.cnf && \
 
 RUN sh -c "mysqld &" &&\
     sleep 5 && \
-	echo "CREATE DATABASE wordpress" | mysql &&\
-	echo "CREATE USER '$db_user'@'%' IDENTIFIED BY 'password';" | mysql &&\
-	echo "GRANT ALL PRIVILEGES ON wordpress.* TO '$db_user'@'%';" | mysql &&\
+	echo "CREATE DATABASE $DB_NAME" | mysql &&\
+	echo "CREATE USER '$DB_USER'@'$DB_CLIENT' IDENTIFIED BY '$DB_PASSWORD';" | mysql &&\
+	echo "GRANT ALL PRIVILEGES ON $DB_NAME.* TO '$DB_USER'@'$DB_CLIENT';" | mysql &&\
 	echo "FLUSH PRIVILEGES;" | mysql
 
 EXPOSE 3306

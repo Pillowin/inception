@@ -7,7 +7,10 @@ RUN apk update --no-cache && \
     apk add php php7-fpm php7-mysqli php7-json
 
 RUN sed -i 's/listen = 127\.0\.0\.1:9000/listen = 9000/g' /etc/php7/php-fpm.d/www.conf && \
-	sed -i '5ienv[DB_USER] = $DB_USER' /etc/php7/php-fpm.d/www.conf
+	sed -i '5ienv[DB_HOST] = $DB_HOST' /etc/php7/php-fpm.d/www.conf && \
+	sed -i '5ienv[DB_NAME] = $DB_NAME' /etc/php7/php-fpm.d/www.conf && \
+	sed -i '5ienv[DB_USER] = $DB_USER' /etc/php7/php-fpm.d/www.conf && \
+	sed -i '5ienv[DB_PASSWORD] = $DB_PASSWORD' /etc/php7/php-fpm.d/www.conf
 
 CMD ["php-fpm7", "-F"]
 
