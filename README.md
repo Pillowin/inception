@@ -8,8 +8,12 @@ This document is a System Administration related exercise.
 - put volumes in correct folder
 - add domaine name
 - use env
+
 ### mariadb
-###wordpress
-###nginx
+
+### wordpress
+
+### nginx
+
 - nginx put conf in included folder
 - remove cert from conf folder
