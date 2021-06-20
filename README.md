@@ -15,6 +15,7 @@ This document is a System Administration related exercise.
  
 ### wordpress
 - create users
+- fetch wordpress files
 
 ### nginx
 - nginx put conf in included folder
