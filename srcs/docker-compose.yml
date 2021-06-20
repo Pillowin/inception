@@ -1,44 +1,39 @@
 version: '3.3'
-
 services:
-
-    wordpress:
-        container_name: wordpress
-        build: ./requirements/wordpress
-        restart: always
-        networks:
-            - network
-        volumes:
-            - type: volume
-              source: website
-              target: /code
-
-    mariadb:
-        container_name: mariadb
-        build: ./requirements/mariadb
-        restart: always
-        networks:
-            - network
-
-    nginx:
-        container_name: nginx
-        build: ./requirements/nginx
-        restart: always
-        depends_on:
-            - wordpress
-            - mariadb
-        ports:
-            - "443:443"
-        networks:
-            - network
-        volumes:
-            - type: volume
-              source: website
-              target: /code
-
+  wordpress:
+    container_name: wordpress
+    build: ./requirements/wordpress
+    restart: always
+    networks:
+      - network
+    volumes:
+      - type: volume
+        source: website
+        target: /code
+  mariadb:
+    container_name: mariadb
+    build: ./requirements/mariadb
+    restart: always
+    networks:
+      - network
+  nginx:
+    container_name: nginx
+    build: ./requirements/nginx
+    restart: always
+    depends_on:
+      - wordpress
+      - mariadb
+    ports:
+      - "443:443"
+    networks:
+      - network
+    volumes:
+      - type: volume
+        source: website
+        target: /code
 volumes:
-    website:
-        external: true
+  website:
+    external: true
 
 networks:
-    network:
+  network:
