@@ -4,6 +4,8 @@ services:
     container_name: wordpress
     build: ./requirements/wordpress
     restart: always
+    environment:
+      - DB_USER=${DB_USER}
     networks:
       - network
     volumes:
@@ -12,7 +14,10 @@ services:
         target: /code
   mariadb:
     container_name: mariadb
-    build: ./requirements/mariadb
+    build:
+      context: ./requirements/mariadb
+      args:
+        - db_user=${DB_USER}
     restart: always
     networks:
       - network
