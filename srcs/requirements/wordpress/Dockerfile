@@ -1,6 +1,8 @@
 FROM alpine:3.12.7
 LABEL maintener="agautier <agautier@student.42.fr>"
 
+COPY ./conf/wp-config.php /code/wp-config.php
+
 RUN apk update --no-cache && \
     apk add php php7-fpm php7-mysqli php7-json
 
