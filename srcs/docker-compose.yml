@@ -27,6 +27,10 @@ services:
     restart: always
     networks:
       - network
+    volumes:
+      - type: volume
+        source: database
+        target: /var/lib/mysql
   nginx:
     container_name: nginx
     build: ./requirements/nginx
@@ -44,7 +48,14 @@ services:
         target: /code
 volumes:
   website:
-    external: true
-
+    driver_opts:
+      type: "none"
+      o: "bind"
+      device: "${PWD}/srcs/requirements/tools/code"
+  database:
+    driver_opts:
+      type: "none"
+      o: "bind"
+      device: "${PWD}/srcs/requirements/tools/db"
 networks:
   network:
