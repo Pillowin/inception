@@ -1,6 +1,7 @@
 version: '3.3'
 
 services:
+
     wordpress:
         container_name: wordpress
         build: ./requirements/wordpress
@@ -11,12 +12,14 @@ services:
             - type: volume
               source: website
               target: /code
+
     mariadb:
         container_name: mariadb
         build: ./requirements/mariadb
         restart: always
-        ports:
-          - "3306:3306"
+        networks:
+            - network
+
     nginx:
         container_name: nginx
         build: ./requirements/nginx
@@ -32,8 +35,10 @@ services:
             - type: volume
               source: website
               target: /code
+
 volumes:
     website:
         external: true
+
 networks:
     network:
