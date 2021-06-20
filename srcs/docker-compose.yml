@@ -1,9 +1,10 @@
-version: '3.3'
+version: '3.4'
 services:
   wordpress:
     container_name: wordpress
     build: ./requirements/wordpress
     restart: always
+    env_file: .env
     environment:
       - DB_HOST=${DB_HOST}
       - DB_NAME=${DB_NAME}
@@ -17,6 +18,7 @@ services:
         target: /code
   mariadb:
     container_name: mariadb
+    env_file: .env
     build:
       context: ./requirements/mariadb
       args:
@@ -51,11 +53,11 @@ volumes:
     driver_opts:
       type: "none"
       o: "bind"
-      device: "${PWD}/srcs/requirements/tools/code"
+      device: "${HOME}/website"
   database:
     driver_opts:
       type: "none"
       o: "bind"
-      device: "${PWD}/srcs/requirements/tools/db"
+      device: "${HOME}/database"
 networks:
   network:
