@@ -10,10 +10,13 @@ This document is a System Administration related exercise.
 - use env
 
 ### mariadb
-
+- disable root/mysql
+- create required users
+ 
 ### wordpress
+- create users
+- fetch wordpress files
 
 ### nginx
-
 - nginx put conf in included folder
 - remove cert from conf folder
