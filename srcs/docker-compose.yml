@@ -31,10 +31,6 @@ services:
     restart: always
     networks:
       - network
-    volumes:
-      - type: volume
-        source: database
-        target: /var/lib/mysql
   nginx:
     container_name: nginx
     build: ./requirements/nginx
