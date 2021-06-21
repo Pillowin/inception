@@ -4,7 +4,6 @@ services:
     container_name: wordpress
     build: ./requirements/wordpress
     restart: always
-    env_file: .env
     environment:
       - DB_HOST=${DB_HOST}
       - DB_NAME=${DB_NAME}
@@ -15,10 +14,9 @@ services:
     volumes:
       - type: volume
         source: website
-        target: /code
+        target: /var/www/html
   mariadb:
     container_name: mariadb
-    env_file: .env
     build:
       context: ./requirements/mariadb
       args:
@@ -26,6 +24,10 @@ services:
         - DB_NAME=${DB_NAME}
         - DB_USER=${DB_USER}
         - DB_PASSWORD=${DB_PASSWORD}
+        - WP_ADMIN_USER=${WP_ADMIN_USER}
+        - WP_ADMIN_PASSWORD=${WP_ADMIN_PASSWORD}
+        - WP_USER=${WP_USER}
+        - WP_PASSWORD=${WP_PASSWORD}
     restart: always
     networks:
       - network
@@ -47,7 +49,7 @@ services:
     volumes:
       - type: volume
         source: website
-        target: /code
+        target: /var/www/html
 volumes:
   website:
     driver_opts:
