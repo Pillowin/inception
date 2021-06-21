@@ -10,10 +10,10 @@ $(NAME):
 	mkdir -p $(HOME)/database
 #	docker volume create --opt type=none --opt device=$(HOME)/website --opt o=bind website
 #	docker volume create --opt type=none --opt device=$(HOME)/database --opt o=bind database
-	wget https://fr.wordpress.org/latest-fr_FR.tar.gz -O /tmp/wordpress.tar.gz
-	tar -xf /tmp/wordpress.tar.gz -C $(HOME)/website --strip-components=1
-	rm -f /tmp/wordpress.tar.gz
-	cp ./srcs/requirements/wordpress/conf/wp-config.php $(HOME)/website/
+#	wget https://fr.wordpress.org/latest-fr_FR.tar.gz -O /tmp/wordpress.tar.gz
+#	tar -xf /tmp/wordpress.tar.gz -C $(HOME)/website --strip-components=1
+#	rm -f /tmp/wordpress.tar.gz
+#	cp ./srcs/requirements/wordpress/conf/wp-config.php $(HOME)/website/
 	docker-compose --file ./srcs/docker-compose.yml build
 	docker-compose --file ./srcs/docker-compose.yml up -d
 

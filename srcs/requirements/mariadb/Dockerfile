@@ -31,7 +31,6 @@ RUN mysqld &\
 	echo "CREATE USER '$DB_USER'@'$DB_CLIENT' IDENTIFIED BY '$DB_PASSWORD';" | mysql && \
 	echo "GRANT ALL PRIVILEGES ON $DB_NAME.* TO '$DB_USER'@'$DB_CLIENT';" | mysql && \
 	echo "FLUSH PRIVILEGES;" | mysql
-#	echo "INSERT INTO '$DB_NAME'.'wp_users' ('ID', 'user_login', 'user_pass', 'user_nicename', 'user_email', 'user_url', 'user_registered', 'user_activation_key', 'user_status', 'display_name') VALUES ('', MD5('$WP_PASSWORD'), '$WP_USER', '', '', '2021-06-21 00:38:45'. '', '0', '$WP_USER');" | mysql
 
 EXPOSE 3306
 

@@ -1,20 +1,5 @@
 version: '3.4'
 services:
-  wordpress:
-    container_name: wordpress
-    build: ./requirements/wordpress
-    restart: always
-    environment:
-      - DB_HOST=${DB_HOST}
-      - DB_NAME=${DB_NAME}
-      - DB_USER=${DB_USER}
-      - DB_PASSWORD=${DB_PASSWORD}
-    networks:
-      - network
-    volumes:
-      - type: volume
-        source: website
-        target: /var/www/html
   mariadb:
     container_name: mariadb
     build:
@@ -31,13 +16,36 @@ services:
     restart: always
     networks:
       - network
+  wordpress:
+    container_name: wordpress
+    depends_on:
+      - mariadb
+    build:
+      context: ./requirements/wordpress
+    restart: always
+    environment:
+      - DB_HOST=${DB_HOST}
+      - DB_NAME=${DB_NAME}
+      - DB_USER=${DB_USER}
+      - DB_PASSWORD=${DB_PASSWORD}
+      - DOMAIN_NAME=${DOMAIN_NAME}
+      - TITLE=${TITLE}
+      - WP_ADMIN_USER=${WP_ADMIN_USER}
+      - WP_ADMIN_PASSWORD=${WP_ADMIN_PASSWORD}
+      - WP_ADMIN_MAIL=${WP_ADMIN_MAIL}
+    networks:
+      - network
+    volumes:
+      - type: volume
+        source: website
+        target: /var/www/html
   nginx:
     container_name: nginx
+    depends_on:
+      - mariadb
+      - wordpress
     build: ./requirements/nginx
     restart: always
-    depends_on:
-      - wordpress
-      - mariadb
     ports:
       - "443:443"
     networks:
