@@ -8,7 +8,7 @@ ARG DB_PASSWORD
 ARG DB_ROOT_PASSWORD
 
 RUN apk update --no-cache && \
-	apk add mysql mysql-client
+	apk add mariadb mariadb-client
 
 RUN sed -i "7i user=mysql\ndatadir=/var/lib/mysql/" /etc/my.cnf.d/mariadb-server.cnf && \
 	mariadb-install-db --user=mysql --datadir=/var/lib/mysql --auth-root-authentication-method=normal && \
