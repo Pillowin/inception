@@ -5,10 +5,6 @@ ARG DB_CLIENT
 ARG DB_NAME
 ARG DB_USER
 ARG DB_PASSWORD
-ARG WP_ADMIN_USER
-ARG WP_ADMIN_PASSWORD
-ARG WP_USER
-ARG WP_PASSWORD
 
 RUN apk update --no-cache && \
 	apk add mysql mysql-client

@@ -9,10 +9,6 @@ services:
         - DB_NAME=${DB_NAME}
         - DB_USER=${DB_USER}
         - DB_PASSWORD=${DB_PASSWORD}
-        - WP_ADMIN_USER=${WP_ADMIN_USER}
-        - WP_ADMIN_PASSWORD=${WP_ADMIN_PASSWORD}
-        - WP_USER=${WP_USER}
-        - WP_PASSWORD=${WP_PASSWORD}
     restart: always
     networks:
       - network
@@ -20,8 +16,7 @@ services:
     container_name: wordpress
     depends_on:
       - mariadb
-    build:
-      context: ./requirements/wordpress
+    build: ./requirements/wordpress
     restart: always
     environment:
       - DB_HOST=${DB_HOST}
@@ -33,6 +28,8 @@ services:
       - WP_ADMIN_USER=${WP_ADMIN_USER}
       - WP_ADMIN_PASSWORD=${WP_ADMIN_PASSWORD}
       - WP_ADMIN_MAIL=${WP_ADMIN_MAIL}
+      - WP_USER=${WP_USER}
+      - WP_PASSWORD=${WP_PASSWORD}
     networks:
       - network
     volumes:
