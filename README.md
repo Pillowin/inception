@@ -18,7 +18,7 @@ This document is a System Administration related exercise.
 ### wordpress
 - create users
 - fetch wordpress files
-- 
+- user wp core is-installed to not reinstall wp if in volume
 
 ### nginx
 - nginx put conf in included folder
