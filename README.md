@@ -10,6 +10,7 @@ This document is a System Administration related exercise.
 - add domaine name
 - use env
 - change url and server_name
+- add name and tag for image 
 
 ### mariadb
 - disable root/mysql
