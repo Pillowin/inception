@@ -9,6 +9,7 @@ This document is a System Administration related exercise.
 - put volumes in correct folder
 - add domaine name
 - use env
+- change url and server_name
 
 ### mariadb
 - disable root/mysql
