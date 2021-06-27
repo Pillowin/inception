@@ -6,6 +6,7 @@ ARG DB_NAME
 ARG DB_USER
 ARG DB_PASSWORD
 ARG DB_ROOT_PASSWORD
+ARG DB_MYSQL_PASSWORD
 
 RUN apk update --no-cache && \
 	apk add mariadb mariadb-client

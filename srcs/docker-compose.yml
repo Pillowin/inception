@@ -1,7 +1,8 @@
-version: '3.4'
+version: '3.8'
 services:
   mariadb:
     container_name: mariadb
+    image: mariadb:v1
     build:
       context: ./requirements/mariadb
       args:
@@ -9,12 +10,18 @@ services:
         - DB_NAME=${DB_NAME}
         - DB_USER=${DB_USER}
         - DB_PASSWORD=${DB_PASSWORD}
+        - DB_MYSQL_PASSWORD=${DB_ROOT_PASSWORD}
         - DB_ROOT_PASSWORD=${DB_ROOT_PASSWORD}
     restart: always
     networks:
       - network
+    volumes:
+      - type: volume
+        source: database
+        target: /var/lib/mysql
   wordpress:
     container_name: wordpress
+    image: wordpress:v1
     depends_on:
       - mariadb
     build: ./requirements/wordpress
@@ -39,6 +46,7 @@ services:
         target: /var/www/html
   nginx:
     container_name: nginx
+    image: nginx:v1
     depends_on:
       - mariadb
       - wordpress
@@ -57,11 +65,11 @@ volumes:
     driver_opts:
       type: "none"
       o: "bind"
-      device: "${HOME}/website"
+      device: "/home/agautier/data/website"
   database:
     driver_opts:
       type: "none"
       o: "bind"
-      device: "${HOME}/database"
+      device: "/home/agautier/data/database"
 networks:
   network:

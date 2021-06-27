@@ -3,25 +3,35 @@ NAME = inception
 all: $(NAME)
 
 $(NAME):
-#	wget -c https://wordpress.org/latest.tar.gz
-#	tar xf latest.tar.gz -C ./srcs/requirements/tools/code/ --strip-components 1
-#	rm -rf latest.tar.gz
-	mkdir -p $(HOME)/website
-	mkdir -p $(HOME)/database
-#	docker volume create --opt type=none --opt device=$(HOME)/website --opt o=bind website
-#	docker volume create --opt type=none --opt device=$(HOME)/database --opt o=bind database
-#	wget https://fr.wordpress.org/latest-fr_FR.tar.gz -O /tmp/wordpress.tar.gz
-#	tar -xf /tmp/wordpress.tar.gz -C $(HOME)/website --strip-components=1
-#	rm -f /tmp/wordpress.tar.gz
-#	cp ./srcs/requirements/wordpress/conf/wp-config.php $(HOME)/website/
-	docker-compose --file ./srcs/docker-compose.yml build
+	@mkdir -p /home/agautier/data/website
+	@mkdir -p /home/agautier/data/database
 	docker-compose --file ./srcs/docker-compose.yml up -d
+	@echo -n "Waiting for wordpress initialization"
+	@bash ./srcs/requirements/tools/check_install.sh
+	@echo "\nReady !"
 
 clean:
-	docker-compose --project-name $(NAME) --project-directory srcs -f srcs/docker-compose.yml down
+	docker-compose --file srcs/docker-compose.yml down
 
 fclean:	clean
+	sudo rm -Rf /home/agautier/data/*
+	docker system prune --all --volumes
+	docker volume rm -f inception_website
+	docker volume rm -f inception_database
+	@echo ""
+	docker ps
+	@echo ""
+	docker volume ls
+	@echo ""
+	docker network ls
 
-re:	clean all
+re:	fclean 
+	@mkdir -p /home/agautier/data/website
+	@mkdir -p /home/agautier/data/database
+	docker-compose --file ./srcs/docker-compose.yml build
+	docker-compose --file ./srcs/docker-compose.yml up -d
+	@echo -n "Waiting for wordpress initialization"
+	@bash ./srcs/requirements/tools/check_install.sh
+	@echo "\nReady !"
 
 .PHONY:	all clean fclean re
